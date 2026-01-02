@@ -1,8 +1,13 @@
 pipeline {
     agent any
 
-    stages {
+    tools {
+        // This MUST match the 'Name' you gave the scanner in 
+        // Manage Jenkins -> Global Tool Configuration
+        scannerHome 'SonarQube' 
+    }
 
+    stages {
         stage('Checkout Code') {
             steps {
                 checkout scm
@@ -11,6 +16,8 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
+                // This 'SonarQube' must match the Server name in 
+                // Manage Jenkins -> System -> SonarQube installations
                 withSonarQubeEnv('SonarQube') {
                     sh '''
                     sonar-scanner \
