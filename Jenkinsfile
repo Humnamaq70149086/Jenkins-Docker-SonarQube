@@ -27,7 +27,7 @@ pipeline {
                 sh '''
                 ssh -i /var/lib/jenkins/.ssh/docker_key \
                 -o StrictHostKeyChecking=no \
-                ubuntu@<DOCKER_PUBLIC_IP> "
+                ubuntu@13.220.172.128 "
                 rm -rf ~/static-site &&
                 git clone ${GIT_URL} static-site &&
                 cd static-site &&
