@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     tools {
-        // This MUST match the 'Name' you gave the scanner in 
-        // Manage Jenkins -> Global Tool Configuration
-        scannerHome 'SonarQube' 
+        // Use 'sonar-scanner' as the tool type. 
+        // 'SonarQube' must match the name you gave it in Global Tool Configuration.
+        "hudson.plugins.sonar.SonarRunnerInstallation" 'SonarQube'
     }
 
     stages {
@@ -16,8 +16,6 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                // This 'SonarQube' must match the Server name in 
-                // Manage Jenkins -> System -> SonarQube installations
                 withSonarQubeEnv('SonarQube') {
                     sh '''
                     sonar-scanner \
